@@ -1,4 +1,4 @@
-Implemenation of "Natural Learning"
+Implementation of "Natural Learning"
 
 website: www.natural-learning.cc
 

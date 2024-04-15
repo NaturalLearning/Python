@@ -62,14 +62,17 @@ class LSH:
         query_hash_code = np.sign(np.dot(query_point, self.hash_functions))
         query_hash_index = np.mod(np.sum(query_hash_code), self.hash_size).astype(int)
         candidate_neighbors = self.hash_tables[query_hash_index]
-        best_distance = np.inf
-        best_neighbor = -1
-        for i in candidate_neighbors:
-            candidate_point = X[i, :]
-            distance = np.linalg.norm(candidate_point - query_point)
-            if distance < best_distance and distance != 0:
-                best_distance = distance
-                best_neighbor = i
+        if not candidate_neighbors: 
+            return -1
+        else:
+            best_distance = np.inf
+            best_neighbor = -1
+            for i in candidate_neighbors:
+                candidate_point = X[i, :]
+                distance = np.linalg.norm(candidate_point - query_point)
+                if distance < best_distance and distance != 0:
+                    best_distance = distance
+                    best_neighbor = i
         return best_neighbor
     
 
